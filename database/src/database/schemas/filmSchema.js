@@ -11,16 +11,16 @@ const filmSchema = new Schema({
   planets: [{ type: String, ref: "Planet" }],
 });
 
-filmSchema.statics.list = async function () {
+filmSchema.statics.list = async function() {
   return await this.find()
     .populate("characters", ["_id", "name"])
     .populate("planets", ["_id", "name"]);
 };
 
-filmSchema.statics.get = async function (id) {
+filmSchema.statics.get = async function(id) {
   return await this.findById(id)
-    .populate("homeworld", ["_id", "name"])
-    .populate("films", ["_id", "title"]);
+    .populate("characters", ["_id", "name"])
+    .populate("planets", ["_id", "title"]);
 };
 
 filmSchema.statics.insert = async function (film) {
